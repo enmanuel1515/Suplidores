@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #000;
+        }
+        header {
+            background-color: #0047ab;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .producto {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .producto img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .producto button {
+            background-color: #0047ab;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .producto button:hover {
+            background-color: #00309e;
+        }
+        .carrito {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .carrito-items {
+            margin-bottom: 20px;
+        }
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .descuento {
+            color: #0047ab;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nuestros proveedores</h1>
+    </header>
+
+    <div class="container">
+        <div class="productos">
+            <div class="producto">
+                <img src="Imagenes/zapatos.png" alt="Zapatos">
+                <h3>Zapateria daniel</h3>
+                <p>100 pares de zapatos </p>
+                <p class="precio">$45,000</p>
+                <button onclick="agregarAlCarrito('100x Zapatos\'', 45000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/pantalones.png" alt="Pantalones">
+                <h3> De pantalones Levis </h3>
+                <p>500 pantalones</p>
+                <p class="precio">$100,000</p>
+                <button onclick="agregarAlCarrito('Pantalones', 100000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/poloche.png" alt="Poloche">
+                <h3>Poloche los santos</h3>
+                <p>500 poloche</p>
+                <p class="precio">$75,000</p>
+                <button onclick="agregarAlCarrito('Poloche\'', 75000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/libros.png" alt="Libros">
+                <h3>Editora Santillana</h3>
+                <p>700 libros</p>
+                <p class="precio">$150,000</p>
+                <button onclick="agregarAlCarrito('Libros', 150000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/cafeteria.png" alt="suplidora">
+                <h3>Suplidora Valdez </h3>
+                <p>Pan, refrescos, chetos, etc</p>
+                <p class="precio">$30,000</p>
+                <button onclick="agregarAlCarrito('Compras de la cafeteria\'', 30000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/materiales.png" alt="Papeleria">
+                <h3>Papeleria estrella de belen</h3>
+                <p>Hoja en blanco, colores, lapiz, etc</p>
+                <p class="precio">$35,000</p>
+                <button onclick="agregarAlCarrito('Materiales', 35000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/mesas.png" alt="Mesa escolar">
+                <h3>De mesas escolares luis</h3>
+                <p>550 mesas</p>
+                <p class="precio">$200,000</p>
+                <button onclick="agregarAlCarrito('Mesas escolares', 200000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/Pizarras.png" alt="Pizarra">
+                <h3>Pizarras alberto</h3>
+                <p>25 pizarras</p>
+                <p class="precio">$40,000</p>
+                <button onclick="agregarAlCarrito('Pizarras', 40000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/computadoras.png" alt="Computadora">
+                <h3>DELL</h3>
+                <p>30 computadoras</p>
+                <p class="precio">$250,000</p>
+                <button onclick="agregarAlCarrito('Computadora', 250000)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="Imagenes/productosdeingiene.png" alt="Productos">
+                <h3>Fabuloso</h3>
+                <p>Cloro, ace, jabon</p>
+                <p class="precio">$20,000</p>
+                <button onclick="agregarAlCarrito('Productos de limpieza', 20000)">Agregar al carrito</button>
+            </div>
+        </div>
+
+        <div class="carrito">
+            <h2>Carrito de Compras</h2>
+            <div id="carrito-items" class="carrito-items">
+                <p>No hay productos en el carrito</p>
+            </div>
+            <div class="total">
+                <p>Subtotal: $<span id="subtotal">0</span></p>
+                <p class="descuento" id="descuento-info">Descuento: $<span id="descuento">0</span></p>
+                <p>Total a pagar: $<span id="total">0</span></p>
+            </div>
+            <button onclick="vaciarCarrito()">Vaciar carrito</button>
+            <button onclick="realizarCompra()">Realizar compra</button>
+        </div>
+    </div>
+
+    <script>
+        let carrito = [];
+        let subtotal = 0;
+        let descuento = 0;
+        let total = 0;
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({nombre, precio});
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const carritoItems = document.getElementById('carrito-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const descuentoElement = document.getElementById('descuento');
+            const totalElement = document.getElementById('total');
+            const descuentoInfo = document.getElementById('descuento-info');
+            
+            // Limpiar carrito visual
+            carritoItems.innerHTML = '';
+            
+            if (carrito.length === 0) {
+                carritoItems.innerHTML = '<p>No hay productos en el carrito</p>';
+                subtotalElement.textContent = '0';
+                descuentoElement.textContent = '0';
+                totalElement.textContent = '0';
+                return;
+            }
+            
+            // Calcular subtotal
+            subtotal = carrito.reduce((sum, item) => sum + item.precio, 0);
+            
+            // Aplicar descuento si el subtotal supera 100,000 pesos
+            if (subtotal > 100000) {
+                descuento = subtotal * 0.25;
+                descuentoInfo.style.display = 'block';
+            } else {
+                descuento = 0;
+                descuentoInfo.style.display = 'none';
+            }
+            
+            total = subtotal - descuento;
+            
+            // Mostrar productos en el carrito
+            carrito.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.innerHTML = `
+                    <p>${item.nombre} - $${item.precio}</p>
+                `;
+                carritoItems.appendChild(itemElement);
+            });
+            
+            // Actualizar totales
+            subtotalElement.textContent = subtotal.toLocaleString();
+            descuentoElement.textContent = descuento.toLocaleString();
+            totalElement.textContent = total.toLocaleString();
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+            alert('Carrito vaciado correctamente');
+        }
+
+        function realizarCompra() {
+            if (carrito.length === 0) {
+                alert('El carrito está vacío');
+                return;
+            }
+            
+            let mensaje = 'Compra realizada con éxito!\n\n';
+            mensaje += 'Resumen de compra:\n';
+            carrito.forEach(item => {
+                mensaje += `- ${item.nombre}: $${item.precio.toLocaleString()}\n`;
+            });
+            mensaje += `\nSubtotal: $${subtotal.toLocaleString()}`;
+            
+            if (descuento > 0) {
+                mensaje += `\nDescuento aplicado (25%): $${descuento.toLocaleString()}`;
+            }
+            
+            mensaje += `\nTotal: $${total.toLocaleString()}`;
+            
+            alert(mensaje);
+            carrito = [];
+            actualizarCarrito();
+        }
+    </script>
+</body>
+</html>
